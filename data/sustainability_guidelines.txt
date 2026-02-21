@@ -1,0 +1,215 @@
+================================================================================
+            GREENROUTE AI — SUSTAINABILITY & ECO-DRIVING GUIDELINES
+                        Version 2.1 | Published: January 2026
+              Green Transport Initiative Council (GTIC)
+================================================================================
+
+CHAPTER 1: INTRODUCTION TO ECO-DRIVING
+--------------------------------------------------------------------------------
+
+1.1 Purpose
+
+    This document establishes best practices for eco-driving within commercial
+    fleet operations. Implementing these guidelines can reduce fleet fuel
+    consumption by 10–25% and proportionally decrease carbon emissions.
+
+1.2 Scope
+
+    These guidelines apply to all commercial diesel truck operators within
+    the GreenRoute AI monitored fleet. Compliance is tracked through the
+    real-time eco-score system.
+
+
+CHAPTER 2: OPTIMAL SPEED MANAGEMENT
+--------------------------------------------------------------------------------
+
+2.1 Target Speed Range
+
+    The optimal speed range for diesel trucks to maximize fuel efficiency is:
+
+        >>> OPTIMAL SPEED: 50 – 70 km/h <<<
+
+    Within this range:
+    - Engine operates at peak thermal efficiency
+    - Gear ratios are optimized for load
+    - Aerodynamic drag is manageable
+    - Tire rolling resistance is balanced
+
+2.2 Speed Impact on Fuel Consumption
+
+    | Speed Range   | Fuel Efficiency Impact             | CO₂ Impact       |
+    |---------------|-------------------------------------|------------------|
+    | < 30 km/h     | +35% fuel usage (low gear)         | High per km      |
+    | 30–50 km/h    | +10% fuel usage (suboptimal)       | Moderate per km  |
+    | 50–70 km/h    | Baseline (optimal)                 | Lowest per km    |
+    | 70–90 km/h    | +15% fuel usage (drag increase)    | Elevated per km  |
+    | > 90 km/h     | +35% fuel usage (high drag)        | Very high per km |
+
+2.3 Speed Consistency
+
+    Maintaining a consistent speed is more important than maintaining a fast
+    speed. Drivers should:
+    
+    - Use cruise control on highways when available
+    - Anticipate traffic flow to avoid sudden speed changes  
+    - Allow longer following distances to reduce reactive braking
+    - Gradually adjust speed when approaching hills
+
+
+CHAPTER 3: ACCELERATION AND BRAKING PRACTICES
+--------------------------------------------------------------------------------
+
+3.1 Smooth Acceleration
+
+    Best practices for acceleration:
+    
+    - Accelerate gradually (target: < 1.5 m/s²)
+    - Upshift early to keep RPM in the efficiency band (1200–1600 RPM)
+    - Avoid "jackrabbit" starts from stops
+    - Use momentum to carry the vehicle through speed transitions
+
+3.2 Reducing Sudden Braking
+
+    Sudden braking wastes the kinetic energy that fuel was consumed to create.
+    
+    Prevention strategies:
+    - Maintain safe following distance (minimum 4 seconds for trucks)
+    - Scan ahead for red lights, stop signs, and traffic slowdowns
+    - Use engine braking (downshifting) before applying wheel brakes
+    - Coast to decelerate when approaching known stops
+
+3.3 Impact Quantification
+
+    Each hard braking event (deceleration > 3.0 m/s²) followed by
+    re-acceleration wastes approximately:
+    
+    - 0.05–0.15 liters of diesel
+    - 0.13–0.40 kg of CO₂
+    
+    A driver averaging 20 hard brakes per trip wastes 1–3 liters of fuel
+    per trip unnecessarily.
+
+
+CHAPTER 4: IDLE TIME MINIMIZATION
+--------------------------------------------------------------------------------
+
+4.1 The Cost of Idling
+
+    A typical diesel truck at idle consumes:
+    
+    - Fuel:     1.5 – 3.0 liters per hour
+    - CO₂:     4.02 – 8.04 kg per hour
+    - Cost:     ₹120 – ₹240 per hour (at ₹80/liter diesel)
+
+    Over a fleet of 10 trucks, even 30 minutes of unnecessary daily idling
+    per truck results in:
+    
+    - 75 – 150 liters of wasted fuel per month
+    - 201 – 402 kg of unnecessary CO₂ per month
+
+4.2 Idle Reduction Strategies
+
+    1. Turn off engine during stops exceeding 2 minutes
+    2. Use auxiliary power units (APU) for cabin climate control
+    3. Pre-plan stops to minimize wait times at loading docks
+    4. Coordinate with dispatchers to avoid early arrivals
+    5. Use shore power at equipped facilities
+
+4.3 Monitoring
+
+    The GreenRoute AI system automatically detects idle states when:
+    - Speed < 5 km/h for extended periods
+    - Engine running (fuel_rate > 0)
+    
+    Idle events are logged and affect the driver's eco-score.
+
+
+CHAPTER 5: CARGO WEIGHT AND DISTRIBUTION
+--------------------------------------------------------------------------------
+
+5.1 Weight Impact on Fuel Consumption
+
+    Every additional 1,000 kg of cargo increases fuel consumption by
+    approximately 5–8%. Optimal loading practices include:
+
+    - Load only required cargo (avoid unnecessary weight)
+    - Distribute weight evenly across axles
+    - Center heavy items low and toward the vehicle center
+    - Secure cargo to prevent shifting (shifting load affects aerodynamics)
+
+5.2 Optimal Load Ranges
+
+    | Cargo Weight  | Load Factor | Fuel Impact      | Recommendation        |
+    |---------------|-------------|-------------------|-----------------------|
+    | < 5,000 kg    | Light       | Baseline          | Consider consolidation|
+    | 5,000–12,000  | Moderate    | +10–15% over empty| Optimal range         |
+    | 12,000–18,000 | Heavy       | +20–30% over empty| Monitor fuel closely  |
+    | > 18,000 kg   | Overweight  | +35%+ over empty  | Review necessity      |
+
+5.3 Aerodynamic Cargo Practices
+
+    - Use aerodynamic fairings on flatbed trailers
+    - Cover open cargo to reduce drag
+    - Stack cargo to maintain a smooth profile
+    - Remove empty roof racks and accessories when not in use
+
+
+CHAPTER 6: VEHICLE MAINTENANCE FOR EFFICIENCY
+--------------------------------------------------------------------------------
+
+6.1 Tire Maintenance
+
+    Under-inflated tires increase fuel consumption by 1% per 10 PSI below
+    optimal pressure.
+    
+    - Check tire pressure weekly (cold tires)
+    - Maintain manufacturer-recommended pressure
+    - Replace tires when tread depth < 3mm
+    - Use low rolling resistance tires where possible
+
+6.2 Engine Maintenance
+
+    - Change engine oil at recommended intervals
+    - Replace air filters every 20,000 km or as needed
+    - Keep fuel injectors clean
+    - Maintain cooling system efficiency
+    - Address engine warning lights immediately
+
+6.3 Aerodynamic Maintenance
+
+    - Repair body damage that disrupts airflow
+    - Ensure mud flaps and fairings are intact
+    - Keep roof deflectors properly adjusted for trailer height
+
+
+CHAPTER 7: ECO-SCORE SYSTEM
+--------------------------------------------------------------------------------
+
+7.1 Eco-Score Calculation
+
+    The driver/vehicle eco-score is computed as:
+
+        eco_score = (avg_speed / avg_fuel_rate) - (carbon_emission / 10)
+
+    Higher scores indicate better eco-performance.
+
+7.2 Score Interpretation
+
+    | Eco-Score Range | Rating    | Interpretation                      |
+    |-----------------|-----------|-------------------------------------|
+    | > 8.0           | Excellent | Top performer, minimal emissions    |
+    | 5.0 – 8.0       | Good      | Meets standards, room to improve    |
+    | 2.0 – 5.0       | Fair      | Below expectations, coaching needed |
+    | < 2.0           | Poor      | Immediate intervention required     |
+
+7.3 Score Improvement Tips
+
+    1. Maintain speed in the 50–70 km/h range
+    2. Minimize idle time
+    3. Drive smoothly (reduce speed variance)
+    4. Optimize cargo loading
+    5. Keep vehicle well-maintained
+
+================================================================================
+                END OF SUSTAINABILITY & ECO-DRIVING GUIDELINES
+================================================================================

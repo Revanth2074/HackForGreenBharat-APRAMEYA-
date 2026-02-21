@@ -1,0 +1,191 @@
+================================================================================
+            GREENROUTE AI — EMISSION COMPLIANCE POLICY DOCUMENT
+                        Version 3.2 | Effective: January 2026
+            National Fleet Carbon Regulation Authority (NFCRA)
+================================================================================
+
+SECTION 1: DIESEL COMBUSTION EMISSION FACTORS
+--------------------------------------------------------------------------------
+
+1.1 Standard CO₂ Emission Factor
+
+    The internationally recognized carbon dioxide emission factor for standard
+    diesel fuel combustion is:
+
+        CO₂ Factor = 2.68 kg CO₂ per liter of diesel consumed
+
+    This factor accounts for the complete combustion of diesel fuel (density
+    approx. 0.832 kg/L) and is derived from the IPCC Guidelines for National
+    Greenhouse Gas Inventories (2006 Revised).
+
+1.2 Adjusted Emission Factors
+
+    Under specific conditions, the effective emission factor may vary:
+
+    - Cold engine start-up (first 10 minutes):     +12% above baseline
+    - High-altitude operation (>2000m):             +5% above baseline  
+    - Overloaded cargo (>90% capacity):             +8% above baseline
+    - Biodiesel blends (B20):                       -15% reduction
+
+1.3 Measurement Units
+
+    All emissions shall be reported in kilograms of CO₂ (kg CO₂).
+    Fleet-level aggregation uses metric tonnes (1 tonne = 1000 kg).
+
+
+SECTION 2: CARBON EMISSION THRESHOLDS
+--------------------------------------------------------------------------------
+
+2.1 Per-Vehicle Rolling Window Thresholds
+
+    Emissions are monitored using a 10-minute rolling window for each vehicle:
+
+    | Alert Level      | Threshold (kg CO₂ / 10 min) | Action Required          |
+    |------------------|-----------------------------|--------------------------|
+    | GREEN (Normal)   | 0 – 10.0                    | No action                |
+    | YELLOW (Warning) | 10.1 – 15.0                 | Log and monitor          |
+    | RED (Violation)  | > 15.0                      | Immediate intervention   |
+
+    The RED threshold of 15 kg CO₂ per 10-minute window is the compliance
+    boundary. Exceeding this threshold constitutes a carbon emission violation
+    and triggers the EMISSION_ALERT state in the fleet management system.
+
+2.2 Fleet-Wide Daily Thresholds
+
+    Total fleet emissions per day must not exceed:
+    
+    - Small fleet (1–10 trucks):     500 kg CO₂ / day
+    - Medium fleet (11–50 trucks):   2,000 kg CO₂ / day
+    - Large fleet (51+ trucks):      8,000 kg CO₂ / day
+
+2.3 Consecutive Violation Policy
+
+    - 1 violation in 1 hour:    Warning issued
+    - 3 violations in 1 hour:   Vehicle flagged for route optimization
+    - 5 violations in 1 hour:   Mandatory driver re-training notification
+    - 10 violations in 24 hrs:  Vehicle suspended from active routes
+
+
+SECTION 3: IDLE EMISSION REGULATIONS
+--------------------------------------------------------------------------------
+
+3.1 Definition of Idle State
+
+    A vehicle is considered "idle" when:
+    - Vehicle speed is below 5 km/h, AND
+    - Engine is running (fuel_rate > 0), AND
+    - Duration exceeds 2 consecutive minutes
+
+3.2 Idle Emission Impact
+
+    Idle trucks consume approximately 1.5–3.0 liters of diesel per hour,
+    producing 4.02–8.04 kg CO₂ per hour of idling. This represents a
+    significant waste of fuel and unnecessary carbon output.
+
+3.3 Maximum Permitted Idle Time
+
+    - In urban zones:           5 minutes per stop
+    - In loading/unloading:     15 minutes per stop
+    - In rest areas:            30 minutes (engine off required after)
+    - In traffic congestion:    Exempt (auto-detected by system)
+
+3.4 Idle Emission Penalties
+
+    Persistent idling beyond permitted limits incurs:
+    - 1st occurrence:   Warning notification to driver
+    - 2nd occurrence:   Logged violation (affects eco-score)
+    - 3rd occurrence:   Manager escalation
+
+
+SECTION 4: ROUTE OPTIMIZATION GUIDELINES
+--------------------------------------------------------------------------------
+
+4.1 Route Selection Criteria
+
+    Routes must be selected to minimize the following composite metric:
+
+        Route Score = (0.4 × Distance) + (0.3 × Expected_Fuel) + 
+                      (0.2 × Traffic_Delay) + (0.1 × Elevation_Change)
+
+    Lower route scores indicate more carbon-efficient paths.
+
+4.2 Dynamic Re-routing
+
+    When a vehicle enters EMISSION_ALERT state, the system should:
+    
+    1. Evaluate alternative routes within 5 km corridor
+    2. Select route with lowest projected carbon output
+    3. Notify driver within 60 seconds
+    4. Log both original and alternative route for audit
+
+4.3 Speed Optimization for Emissions
+
+    The optimal speed range for diesel truck fuel efficiency is 50–70 km/h.
+    
+    - Below 40 km/h: Inefficient gear ratios increase fuel consumption
+    - 50–70 km/h:    Optimal efficiency zone (lowest CO₂ per km)
+    - Above 80 km/h: Aerodynamic drag increases fuel consumption by 20–40%
+
+4.4 Route Deviation Detection
+
+    A route deviation is flagged when:
+    - Vehicle position deviates >500m from planned route corridor
+    - Deviation persists for >3 minutes
+    - No approved detour authorization exists
+
+
+SECTION 5: ACCELERATION AND DRIVING BEHAVIOR IMPACT
+--------------------------------------------------------------------------------
+
+5.1 Acceleration Variance Threshold
+
+    Speed variance within a 5-minute window is computed as the statistical
+    variance of instantaneous speed samples. High variance indicates
+    aggressive driving (frequent acceleration/deceleration).
+
+    | Variance Level | Speed Variance (km/h)² | Classification          |
+    |----------------|------------------------|-------------------------|
+    | Low            | 0 – 50                 | Smooth driving          |
+    | Medium         | 51 – 150               | Moderate variability    |
+    | High           | > 150                  | Aggressive driving      |
+
+5.2 Emission Impact of Aggressive Driving
+
+    Studies show that aggressive driving patterns increase fuel consumption
+    by 15–30% compared to smooth, steady-speed driving. This translates to:
+
+    - Additional 0.8–2.0 kg CO₂ per 10-minute window
+    - Increased mechanical wear (brake pads, tires)
+    - Higher accident risk
+
+5.3 Driver Coaching Triggers
+
+    When a vehicle exhibits:
+    - Speed variance > 150 for 3 consecutive windows:   Coaching alert
+    - Average acceleration > 2.5 m/s²:                  Hard acceleration flag
+    - Deceleration events > 3.0 m/s²:                   Hard braking flag
+
+
+SECTION 6: COMPLIANCE REPORTING
+--------------------------------------------------------------------------------
+
+6.1 Real-Time Compliance Dashboard
+
+    All fleet operators must maintain a real-time monitoring system displaying:
+    - Per-vehicle carbon emission (current window)
+    - Fleet aggregate emissions
+    - Active alerts and violations
+    - Eco-score rankings
+
+6.2 Audit Trail Requirements
+
+    All emission data, alerts, and state transitions must be logged with:
+    - Timestamp (UTC)
+    - Vehicle identifier
+    - GPS coordinates
+    - Associated metric values
+    - Alert/state information
+
+================================================================================
+                    END OF EMISSION COMPLIANCE POLICY
+================================================================================

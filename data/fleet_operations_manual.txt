@@ -1,0 +1,249 @@
+================================================================================
+            GREENROUTE AI — FLEET OPERATIONS MANUAL
+                        Version 4.0 | Revised: January 2026
+              Fleet Operations Standards Board (FOSB)
+================================================================================
+
+PART 1: STANDARD FLEET STATES
+--------------------------------------------------------------------------------
+
+1.1 Vehicle State Definitions
+
+    The GreenRoute AI system tracks each vehicle using the following
+    operational states:
+
+    ┌──────────────────────┬────────────────────────────────────────────┐
+    │ State                │ Description                                │
+    ├──────────────────────┼────────────────────────────────────────────┤
+    │ EN_ROUTE             │ Vehicle is actively traveling on its       │
+    │                      │ assigned route at normal operating         │
+    │                      │ parameters.                                │
+    ├──────────────────────┼────────────────────────────────────────────┤
+    │ IDLE                 │ Vehicle engine is running but speed is     │
+    │                      │ below 5 km/h for an extended period.       │
+    │                      │ This may indicate traffic, loading, or     │
+    │                      │ unnecessary idling.                        │
+    ├──────────────────────┼────────────────────────────────────────────┤
+    │ DELAYED              │ Vehicle exhibits erratic speed patterns    │
+    │                      │ (high speed variance) indicating traffic   │
+    │                      │ congestion, road obstacles, or driver      │
+    │                      │ behavior issues.                           │
+    ├──────────────────────┼────────────────────────────────────────────┤
+    │ EMISSION_ALERT       │ Vehicle's carbon emissions have exceeded   │
+    │                      │ the regulatory threshold of 15 kg CO₂     │
+    │                      │ within a 10-minute rolling window.         │
+    ├──────────────────────┼────────────────────────────────────────────┤
+    │ OPTIMIZATION_REQUIRED│ Multiple flags are active simultaneously.  │
+    │                      │ Vehicle requires comprehensive review of   │
+    │                      │ route, driving behavior, and maintenance.  │
+    └──────────────────────┴────────────────────────────────────────────┘
+
+1.2 State Transition Rules
+
+    State transitions are event-driven and occur automatically based on
+    real-time telemetry analysis:
+
+    EN_ROUTE → IDLE:
+        Triggered when speed drops below 5 km/h for more than 2 minutes
+        while the engine remains running.
+
+    EN_ROUTE → DELAYED:
+        Triggered when speed variance exceeds the threshold (>150) within
+        a 5-minute rolling window, indicating unstable driving patterns.
+
+    EN_ROUTE → EMISSION_ALERT:
+        Triggered when computed carbon emissions exceed 15 kg CO₂ within
+        the current 10-minute rolling window.
+
+    Any State → OPTIMIZATION_REQUIRED:
+        Triggered when two or more of the following flags are simultaneously
+        active: idle_flag, instability_flag, emission_violation, route_deviation.
+
+    EMISSION_ALERT → EN_ROUTE:
+        Occurs when emissions return below threshold for 2 consecutive windows.
+
+    IDLE → EN_ROUTE:
+        Occurs when speed exceeds 10 km/h and is sustained.
+
+1.3 State Priority
+
+    When multiple state conditions are met simultaneously:
+    
+    OPTIMIZATION_REQUIRED > EMISSION_ALERT > DELAYED > IDLE > EN_ROUTE
+    
+    The highest priority state is displayed.
+
+
+PART 2: DELAY DETECTION AND MANAGEMENT
+--------------------------------------------------------------------------------
+
+2.1 Delay Detection Definition
+
+    A vehicle is classified as "delayed" when ANY of:
+    
+    a) Speed variance within a 5-minute window exceeds 150 (km/h)²
+    b) Average speed drops below 60% of expected route speed
+    c) Actual travel time exceeds planned time by more than 20%
+    d) GPS position shows no significant progress for 10+ minutes
+
+2.2 Delay Causes and Classification
+
+    | Delay Type     | Indicators                        | Expected Duration |
+    |----------------|------------------------------------|--------------------|
+    | Traffic        | Low speed, normal route            | 15–60 min         |
+    | Accident       | Complete stop, unusual location    | 30–120 min        |
+    | Mechanical     | Erratic readings, then stop        | 60–240 min        |
+    | Weather        | Fleet-wide slow speeds             | Variable          |
+    | Loading/Dock   | Idle at known facility             | 15–45 min         |
+
+2.3 Delay Response Protocol
+
+    1. System detects delay condition
+    2. Alert generated and sent to dispatcher
+    3. Dispatcher contacts driver (if > 15 min delay)
+    4. If route alternative exists → suggest rerouting
+    5. Update ETA for downstream operations
+    6. Log delay event with cause code
+
+
+PART 3: MAINTENANCE TRIGGERS
+--------------------------------------------------------------------------------
+
+3.1 Telemetry-Based Maintenance Alerts
+
+    The monitoring system tracks patterns that indicate maintenance needs:
+
+    | Trigger Condition                          | Maintenance Action           |
+    |--------------------------------------------|------------------------------|
+    | Fuel rate > 120% of baseline for 3+ hours  | Engine diagnostics required  |
+    | Speed variance consistently high            | Brake system inspection      |
+    | Idle fuel rate > 3.0 L/hr                  | Engine idle adjustment       |
+    | GPS accuracy degradation                   | GPS antenna check            |
+    | Consistent route deviation                 | Steering alignment check     |
+
+3.2 Preventive Maintenance Schedule
+
+    Based on accumulated telemetry data:
+    
+    - Every 10,000 km:     Oil change, filter inspection
+    - Every 25,000 km:     Brake inspection, tire rotation
+    - Every 50,000 km:     Major service, injector cleaning
+    - Every 100,000 km:    Engine overhaul assessment
+
+3.3 Fuel System Monitoring
+
+    Abnormal fuel consumption patterns may indicate:
+    
+    - Fuel leaks (sudden increase in fuel_rate)
+    - Injector malfunction (gradual increase over time)
+    - Air filter clogging (10–15% efficiency loss)
+    - Dragging brakes (constant elevated fuel_rate)
+
+
+PART 4: FUEL EFFICIENCY EXPECTATIONS
+--------------------------------------------------------------------------------
+
+4.1 Baseline Fuel Efficiency Standards
+
+    Expected fuel consumption rates by vehicle and load condition:
+
+    | Condition              | Expected Fuel Rate (L/hr) | Range         |
+    |------------------------|---------------------------|---------------|
+    | Empty, highway         | 8.0 – 12.0               | Baseline      |
+    | Light load (<5t)       | 10.0 – 15.0              | Normal        |
+    | Moderate load (5–12t)  | 14.0 – 20.0              | Normal        |
+    | Heavy load (12–18t)    | 18.0 – 25.0              | Monitor       |
+    | Overloaded (>18t)      | 25.0 – 35.0              | Alert         |
+    | Idle                   | 1.5 – 3.0                | Minimize      |
+
+4.2 Efficiency Deviation Thresholds
+
+    A vehicle is flagged for fuel efficiency review when:
+    
+    - Actual fuel rate exceeds expected rate by >25% for 30+ minutes
+    - Daily fuel consumption exceeds fleet average by >30%
+    - Fuel rate during idle exceeds 3.0 L/hr
+
+4.3 Carbon Emission Formula
+
+    For real-time carbon tracking:
+
+        carbon_emission (kg CO₂) = fuel_consumed (liters) × 2.68
+
+    Where:
+        fuel_consumed = fuel_rate (L/hr) × time_window (hrs)
+
+    Example:
+        If fuel_rate = 20 L/hr and window = 10 minutes (0.167 hrs):
+        fuel_consumed = 20 × 0.167 = 3.33 liters
+        carbon_emission = 3.33 × 2.68 = 8.93 kg CO₂  (within threshold)
+
+
+PART 5: EMISSION ALERT PROTOCOL
+--------------------------------------------------------------------------------
+
+5.1 Alert Severity Levels
+
+    | Level    | Condition                              | Response Time |
+    |----------|----------------------------------------|---------------|
+    | INFO     | Emissions approaching threshold (>80%) | Log only      |
+    | WARNING  | Emissions at 90–100% of threshold      | 5 minutes     |
+    | CRITICAL | Emissions exceed threshold              | Immediate     |
+    | SEVERE   | Emissions exceed 150% of threshold     | Emergency     |
+
+5.2 Alert Response Workflow
+
+    When an EMISSION_ALERT is triggered:
+
+    Step 1: DETECTION (Automated)
+        - System detects carbon > 15 kg CO₂ per 10-min window
+        - Alert created with timestamp, truck_id, metric values
+        - Vehicle state transitions to EMISSION_ALERT
+
+    Step 2: NOTIFICATION (Within 30 seconds)
+        - Driver receives dashboard notification
+        - Dispatcher receives alert on fleet management console
+        - Alert logged in audit trail
+
+    Step 3: ANALYSIS (Within 2 minutes)
+        - System identifies probable cause:
+          a) High fuel consumption
+          b) Excessive idling
+          c) Aggressive driving
+          d) Overloaded cargo
+          e) Route inefficiency
+
+    Step 4: RECOMMENDATION (Within 5 minutes)
+        - System generates corrective actions based on analysis
+        - RAG copilot provides context from policy documents
+        - Recommendation sent to driver and dispatcher
+
+    Step 5: RESOLUTION (Variable)
+        - Driver implements corrective action
+        - System monitors for emission reduction
+        - When emissions return below threshold → state returns to EN_ROUTE
+        - Resolution time logged for performance tracking
+
+5.3 Escalation Matrix
+
+    | Time Since Alert | Action                                      |
+    |------------------|---------------------------------------------|
+    | 0–5 minutes      | Automated recommendation to driver           |
+    | 5–15 minutes     | Dispatcher manual follow-up                  |
+    | 15–30 minutes    | Fleet manager notification                   |
+    | 30+ minutes      | Route change mandate or vehicle pullover     |
+
+5.4 Post-Incident Review
+
+    After each EMISSION_ALERT resolution:
+    
+    1. Record total violation duration
+    2. Calculate excess emissions above threshold
+    3. Document corrective action taken
+    4. Update driver eco-score
+    5. Identify patterns for preventive measures
+    6. File compliance report if required by regulation
+
+================================================================================
+                    END OF FLEET OPERATIONS MANUAL
+================================================================================
