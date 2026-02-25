@@ -1,0 +1,188 @@
+================================================================================
+      INDIAN EMISSION REGULATIONS & CARBON TAX FRAMEWORK FOR TRANSPORT
+                  Ministry of Environment, Forest and Climate Change
+                  Central Pollution Control Board (CPCB)
+                  Document No. MOEFCC/CPCB/2026/TRANSPORT-EM-001
+================================================================================
+
+CHAPTER 1: NATIONAL ACTION PLAN ON CLIMATE CHANGE (NAPCC)
+         - TRANSPORT SECTOR OBLIGATIONS
+--------------------------------------------------------------------------------
+
+1.1 India's Climate Commitments (NDC)
+
+    Under the Paris Agreement, India committed to:
+    - 45% reduction in emission intensity of GDP by 2030 (from 2005 base)
+    - Net-zero emissions target by 2070
+    - 50% cumulative electric power from non-fossil fuel sources by 2030
+
+    The transport sector contributes approximately 13.5% of India's total
+    CO2 emissions (2024 estimate: 335 million tonnes CO2).
+
+1.2 Transport Sector Targets
+
+    | Target                                      | Deadline     |
+    |---------------------------------------------|-------------|
+    | 30% reduction in transport carbon intensity  | 2030        |
+    | 100% of new trucks BS-VI compliant          | Achieved     |
+    | 15% fleet electrification (LCV segment)     | 2030        |
+    | Mandatory carbon reporting (>20 vehicles)   | Apr 2025     |
+    | Carbon trading for fleet operators           | Apr 2026     |
+
+1.3 State Pollution Control Boards (SPCB)
+
+    Each state's SPCB is authorized to:
+    - Monitor commercial vehicle emissions
+    - Issue show-cause notices for non-compliance
+    - Impose fines up to Rs. 1 Crore for persistent violations
+    - Suspend operating licenses for environmental offenders
+
+
+CHAPTER 2: CARBON PRICING AND TAXATION
+--------------------------------------------------------------------------------
+
+2.1 Carbon Cess on Diesel
+
+    Current carbon cess on diesel (effective April 2025):
+
+    | Component               | Rate (per liter)      |
+    |-------------------------|-----------------------|
+    | Base diesel price       | Rs. 85-95 (varies)    |
+    | Road cess               | Rs. 8.00              |
+    | Infrastructure cess     | Rs. 5.00              |
+    | Carbon cess (NEW)       | Rs. 2.50              |
+    | Agriculture cess        | Rs. 4.00              |
+
+    The Carbon Cess of Rs. 2.50/liter is earmarked for the National
+    Clean Transport Fund (NCTF).
+
+2.2 Carbon Credit Trading (Proposed)
+
+    Starting April 2026:
+    - Fleet operators exceeding emission targets earn carbon credits
+    - Credits can be traded on India Carbon Market (ICM)
+    - 1 Carbon Credit = 1 tonne CO2 avoided
+    - Estimated market price: Rs. 700-1200 per credit
+
+    Example calculation:
+    A fleet of 50 trucks reducing annual emissions by 200 tonnes CO2
+    through eco-driving and route optimization could earn:
+    200 credits x Rs. 900 = Rs. 1,80,000 annual revenue
+
+2.3 Green Fleet Tax Incentives
+
+    | Incentive                          | Benefit                        |
+    |------------------------------------|--------------------------------|
+    | E-Score Platinum fleet             | 15% road tax reduction         |
+    | CNG/LNG converted trucks           | 50% road tax exemption (5 yrs) |
+    | Electric trucks                    | 100% road tax exemption        |
+    | Carbon-neutral fleet (certified)   | Priority in govt. contracts    |
+    | ISO 14001 certified fleet          | 5% insurance discount          |
+
+
+CHAPTER 3: NATIONAL GREEN HIGHWAY MISSION (NGHM)
+--------------------------------------------------------------------------------
+
+3.1 Mission Objectives
+
+    The NGHM aims to:
+    1. Develop 25,000 km of green highways by 2030
+    2. Install emission monitoring stations every 100 km
+    3. Establish electric truck charging corridors on 10 major NHs
+    4. Create buffer green zones (plantation) along highways
+
+3.2 Green Highway Standards
+
+    Vehicles operating on NGHM corridors must:
+
+    a) Speed Compliance:
+       - National Highway:     50-80 km/h for trucks
+       - Expressway:           60-100 km/h for trucks
+       - Urban bypass:         40-60 km/h for trucks
+
+    b) Emission Real-Time Monitoring:
+       - GPS + OBD data transmitted every 60 seconds
+       - Carbon emission calculated in rolling 10-minute windows
+       - Automatic flagging when carbon > 15 kg CO2 per 10 minutes
+
+    c) Rest Area Compliance:
+       - Engine must be turned off within 5 minutes of rest area stop
+       - Designated idling zones only (with emission capture)
+       - Minimum 30-minute rest per 4 hours of driving
+
+3.3 NGHM Monitoring Infrastructure
+
+    | Equipment                  | Frequency      | Coverage        |
+    |----------------------------|----------------|-----------------|
+    | ANPR + Emission Cameras    | Every 50 km    | Major NHs       |
+    | Air Quality Sensors        | Every 25 km    | Green corridors |
+    | Weigh Bridges              | Every toll      | All NHs         |
+    | EV Charging Stations       | Every 100 km   | Target NHs      |
+
+
+CHAPTER 4: PENALTIES AND ENFORCEMENT
+--------------------------------------------------------------------------------
+
+4.1 Emission Violation Penalties
+
+    Under the Motor Vehicles Amendment Act 2019 and Environment Protection
+    Act 1986:
+
+    | Violation                                | First Offense | Repeat   |
+    |------------------------------------------|---------------|----------|
+    | Operating without valid PUC              | Rs. 10,000    | Rs. 10,000 + impound |
+    | Exceeding emission limits                | Rs. 10,000    | Rs. 25,000 |
+    | Tampering with emission controls         | Rs. 50,000    | Rs. 1,00,000 + license cancel |
+    | Unauthorized idling in restricted zones  | Rs. 5,000     | Rs. 15,000 |
+    | Failing carbon reporting obligations     | Rs. 25,000    | Rs. 50,000/quarter |
+    | Operating in Green Corridor without cert | Rs. 25,000    | Rs. 50,000 + ban |
+
+4.2 Enforcement Mechanisms
+
+    1. Automated ANPR-based detection at emission checkpoints
+    2. Random roadside inspections by MoRTH officials
+    3. OBD data audits (quarterly for fleets > 50 vehicles)
+    4. Citizen complaints via PollutionWatch mobile app
+    5. Satellite imagery analysis for large depot emissions
+
+4.3 Appeal Process
+
+    Fleet operators may appeal penalties:
+    - Level 1: Regional Transport Office (RTO) - within 30 days
+    - Level 2: State Transport Authority (STA) - within 60 days
+    - Level 3: National Green Tribunal (NGT) - within 90 days
+
+
+CHAPTER 5: TRANSITION ROADMAP TO ZERO-EMISSION TRANSPORT
+--------------------------------------------------------------------------------
+
+5.1 Phase-wise Transition Plan
+
+    | Phase | Period      | Target                                    |
+    |-------|-------------|-------------------------------------------|
+    | I     | 2024-2026   | 100% BS-VI compliance, carbon reporting   |
+    | II    | 2026-2028   | Carbon credit trading, 5% fleet electric  |
+    | III   | 2028-2030   | 15% fleet electric, hydrogen pilots       |
+    | IV    | 2030-2035   | 40% zero-emission, carbon tax escalation  |
+    | V     | 2035-2050   | 80% zero-emission, fossil phase-out       |
+
+5.2 Technology Support Programs
+
+    Government programs supporting transition:
+    - FAME III (Faster Adoption of EVs): Rs. 10,000 Cr subsidy
+    - Green Freight Corridor Fund: Rs. 5,000 Cr
+    - Hydrogen Mobility Fund: Rs. 2,000 Cr (pilot phase)
+    - Scrappage incentive for pre-BS-IV vehicles: Rs. 1-3 Lakhs
+
+5.3 Fleet Operator Support
+
+    Available assistance for green transition:
+    1. Low-interest loans (6.5%) for electric truck purchase
+    2. Free driver training for eco-driving (through NSDC)
+    3. GPS + telematics subsidy (50% cost) for real-time monitoring
+    4. Carbon offset marketplace for voluntary emissions trading
+    5. Tax deduction under Section 35AD for green fleet investment
+
+================================================================================
+      END OF INDIAN EMISSION REGULATIONS & CARBON TAX FRAMEWORK
+================================================================================

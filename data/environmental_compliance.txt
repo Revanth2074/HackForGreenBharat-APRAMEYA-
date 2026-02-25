@@ -1,0 +1,187 @@
+================================================================================
+          ENVIRONMENTAL COMPLIANCE FRAMEWORK FOR COMMERCIAL FLEETS
+                     National Green Transport Authority (NGTA)
+                     Document No. EC-2026-001 | Rev 4.2
+                     Effective: January 2026
+================================================================================
+
+DIVISION 1: BHARAT STAGE VI (BS-VI) EMISSION STANDARDS
+--------------------------------------------------------------------------------
+
+1.1 Applicability
+
+    All commercial vehicles operating on Indian public highways must comply
+    with Bharat Stage VI (BS-VI) emission standards as mandated by the
+    Ministry of Road Transport and Highways (MoRTH).
+
+    BS-VI standards apply to:
+    - Heavy Commercial Vehicles (HCV) > 12 tonnes GVW
+    - Medium Commercial Vehicles (MCV) 3.5 - 12 tonnes GVW
+    - Light Commercial Vehicles (LCV) < 3.5 tonnes GVW
+
+1.2 BS-VI Pollutant Limits (Diesel)
+
+    | Pollutant                | Limit (g/kWh)         | Test Cycle    |
+    |--------------------------|-----------------------|---------------|
+    | Carbon Monoxide (CO)     | 1.5                   | WHTC          |
+    | Hydrocarbons (HC)        | 0.13                  | WHTC          |
+    | Nitrogen Oxides (NOx)    | 0.4                   | WHTC          |
+    | Particulate Matter (PM)  | 0.01                  | WHTC          |
+    | Particle Number (PN)     | 8.0 x 10^11 /kWh     | WHTC          |
+    | Ammonia (NH3)            | 10 ppm                | WHTC          |
+
+1.3 On-Board Diagnostics (OBD)
+
+    All BS-VI trucks must have OBD-II systems that continuously monitor:
+    - Diesel Particulate Filter (DPF) status
+    - Selective Catalytic Reduction (SCR) performance
+    - Exhaust Gas Recirculation (EGR) functionality
+    - Diesel Oxidation Catalyst (DOC) efficiency
+
+    OBD malfunction indicators must activate when emissions exceed 1.5x
+    of the type-approval limit for any regulated pollutant.
+
+1.4 Real Driving Emissions (RDE)
+
+    Fleet operators must demonstrate compliance under real driving conditions:
+    - Urban driving (< 60 km/h): Minimum 29% of trip time
+    - Rural driving (60-90 km/h): Minimum 23% of trip time
+    - Motorway driving (> 90 km/h): Minimum 23% of trip time
+
+    RDE conformity factor: 1.5x of WHTC limits allowed during transition.
+
+
+DIVISION 2: POLLUTION UNDER CONTROL (PUC) CERTIFICATE
+--------------------------------------------------------------------------------
+
+2.1 Requirements
+
+    Every commercial vehicle must possess a valid PUC certificate:
+    - Renewal: Every 6 months (BS-VI vehicles)
+    - Renewal: Every 3 months (Pre-BS-VI vehicles)
+    - Testing at authorized PUC centers only
+
+2.2 PUC Test Parameters
+
+    | Parameter         | BS-VI Limit              | Pre-BS-VI Limit      |
+    |-------------------|--------------------------|----------------------|
+    | CO at idle        | 0.30%                    | 0.50%                |
+    | HC at idle        | 100 ppm                  | 1500 ppm             |
+    | Smoke opacity     | 25 HSU                   | 65 HSU               |
+    | Lambda            | 0.97 - 1.03              | N/A                  |
+
+2.3 Penalties for Non-Compliance
+
+    Under the Motor Vehicles (Amendment) Act, 2019:
+    - First offense:   Rs. 10,000 fine
+    - Repeat offense:  Rs. 10,000 fine + vehicle impoundment
+    - Operating without PUC: Rs. 10,000 fine + driving license suspension
+
+
+DIVISION 3: CARBON FOOTPRINT REPORTING
+--------------------------------------------------------------------------------
+
+3.1 Mandatory Carbon Reporting
+
+    Effective April 2025, all fleet operators with > 20 vehicles must:
+    1. Calculate and report monthly fleet carbon emissions
+    2. Submit quarterly reports to the State Pollution Control Board
+    3. Maintain digital emission logs with GPS-tagged data
+
+3.2 Carbon Calculation Methodology
+
+    Approved formula for diesel vehicles:
+
+        CO2 (kg) = Fuel Consumed (liters) x 2.68
+
+    For mixed fuel fleets:
+    | Fuel Type        | CO2 Factor (kg/liter)    |
+    |------------------|--------------------------|
+    | Diesel           | 2.68                     |
+    | Petrol           | 2.31                     |
+    | CNG              | 2.75 (per kg)            |
+    | LNG              | 2.75 (per kg)            |
+    | Biodiesel B20    | 2.28                     |
+    | Electric         | 0.82 (per kWh, grid)     |
+
+3.3 Annual Carbon Budget
+
+    Fleet operators must plan annual carbon budgets:
+
+    | Fleet Size    | Annual Budget (tonnes CO2)  | Per-Vehicle Limit     |
+    |---------------|-----------------------------|-----------------------|
+    | 1-20 vehicles | No mandatory limit          | Voluntary reporting   |
+    | 21-50         | 1,500 tonnes/year           | 30 tonnes/vehicle/yr  |
+    | 51-100        | 2,500 tonnes/year           | 25 tonnes/vehicle/yr  |
+    | 100+          | 4,000 tonnes/year           | 20 tonnes/vehicle/yr  |
+
+
+DIVISION 4: GREEN CORRIDOR REGULATIONS
+--------------------------------------------------------------------------------
+
+4.1 Designated Green Corridors
+
+    The following National Highway corridors have been designated as 
+    Green Corridors with enhanced emission monitoring:
+
+    | Corridor                    | NH    | Active Since |
+    |-----------------------------|-------|-------------|
+    | Delhi - Jaipur              | NH48  | Jan 2025    |
+    | Mumbai - Pune Expressway    | MPEW  | Mar 2025    |
+    | Bangalore - Chennai         | NH48  | Jun 2025    |
+    | Delhi - Agra (Yamuna Exp)   | YEAY  | Sep 2025    |
+    | Kolkata - Patna             | NH19  | Jan 2026    |
+
+4.2 Green Corridor Requirements
+
+    Vehicles operating on Green Corridors must:
+    1. Maintain speed within 50-80 km/h range
+    2. Not exceed idle time of 5 minutes at any non-designated stop
+    3. Comply with real-time emission monitoring via GPS-enabled OBD
+    4. Display valid Green Transport Compliance sticker
+    5. Report any emission threshold breach within 15 minutes
+
+4.3 Penalties on Green Corridors
+
+    Enhanced penalties apply:
+    - Emission threshold breach:    Rs. 25,000 per instance
+    - Unauthorized idling > 10 min: Rs. 5,000 per instance
+    - Speeding > 80 km/h:          Rs. 10,000 + suspension
+    - Missing compliance sticker:   Rs. 15,000
+
+
+DIVISION 5: ENVIRONMENTAL IMPACT ASSESSMENT
+--------------------------------------------------------------------------------
+
+5.1 Fleet Environmental Score
+
+    Each fleet receives a quarterly Environmental Score (E-Score):
+
+        E-Score = W1*EmissionScore + W2*FuelScore + W3*ComplianceScore
+
+    Where:
+    - W1 = 0.4 (Emission Weight)
+    - W2 = 0.3 (Fuel Efficiency Weight)
+    - W3 = 0.3 (Compliance Weight)
+
+5.2 E-Score Ratings
+
+    | Score Range | Rating       | Consequence                          |
+    |-------------|-------------|--------------------------------------|
+    | 90 - 100    | Platinum    | Tax incentives, priority permits      |
+    | 75 - 89     | Gold        | Standard operations                  |
+    | 60 - 74     | Silver      | Improvement plan required (90 days)  |
+    | 40 - 59     | Bronze      | Mandatory audit + driver retraining  |
+    | < 40        | Red         | Operating license review             |
+
+5.3 Improvement Mandates
+
+    Fleets with E-Score below 60 must:
+    1. Submit improvement plan within 30 days
+    2. Implement corrective measures within 90 days
+    3. Achieve minimum Silver rating within 180 days
+    4. Failure results in operating license suspension
+
+================================================================================
+          END OF ENVIRONMENTAL COMPLIANCE FRAMEWORK
+================================================================================

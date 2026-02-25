@@ -1,0 +1,209 @@
+================================================================================
+              GREENROUTE AI -- FLEET MAINTENANCE LOG DATABASE
+                          Fleet Operations Division
+                          Last Updated: February 2026
+================================================================================
+
+MAINTENANCE LOG RECORD FORMAT
+--------------------------------------------------------------------------------
+
+Each maintenance record contains:
+    - Vehicle ID
+    - Date of service
+    - Odometer reading (km)
+    - Service type (Scheduled / Unscheduled / Emergency)
+    - Components serviced
+    - Issues found
+    - Resolution
+    - Next service due
+    - Cost (INR)
+    - Technician
+
+
+LOG ENTRIES -- FLEET MAINTENANCE HISTORY
+--------------------------------------------------------------------------------
+
+RECORD #001
+    Vehicle: Truck-08 (Tata Prima 4028.S)
+    Date: 2026-01-15
+    Odometer: 142,350 km
+    Service Type: Unscheduled
+    Components: Fuel Injection System
+    Issue: Fuel injector nozzle #3 showing 23% over-spray. Fuel consumption
+           increased by estimated 18% over last 5,000 km. Driver reported
+           sluggish acceleration and black smoke under load.
+    Resolution: Replaced injectors #3 and #4 (preventive). Recalibrated
+                fuel injection timing. ECU parameters updated.
+    Parts Used: 2x Bosch CRIN4 injectors, 1x fuel filter assembly
+    Cost: Rs. 45,000
+    Next Service: 2026-03-15 or 155,000 km
+    Technician: Ravi Shankar (TEC-042)
+    Note: This truck has historically high fuel consumption. Recommend
+          monitoring fuel rate closely post-repair. If fuel_rate exceeds
+          25 L/hr consistently, investigate turbocharger.
+
+RECORD #002
+    Vehicle: Truck-47 (Ashok Leyland 4220)
+    Date: 2026-01-22
+    Odometer: 98,780 km
+    Service Type: Scheduled (50,000 km service)
+    Components: Engine, Brakes, Transmission
+    Issue: DPF regeneration frequency increased from every 500 km to every
+           200 km. Brake pad wear on front axle at 65% (threshold: 70%).
+           Transmission oil showing metal particulates.
+    Resolution: Performed forced DPF regeneration and cleaning. Replaced
+                front brake pads. Changed transmission oil and filter.
+                Monitored DPF during 50 km test drive - regeneration
+                interval returned to 400 km.
+    Parts Used: 4x brake pads, 1x transmission filter, 15L transmission oil
+    Cost: Rs. 28,500
+    Next Service: 2026-04-22 or 110,000 km
+    Technician: Mohammed Ismail (TEC-018)
+    Note: DPF issues may recur if truck operates frequently in slow
+          urban traffic. Consider assigning to highway-heavy routes.
+
+RECORD #003
+    Vehicle: Truck-35 (BharatBenz 3523R)
+    Date: 2026-01-28
+    Odometer: 67,200 km
+    Service Type: Emergency
+    Components: Engine Cooling System
+    Issue: Coolant temperature warning at 108 degC during NH44 operation.
+           Driver pulled over. Inspection revealed cracked radiator hose
+           (upper) and corroded thermostat housing. Coolant level critically
+           low. Engine exhibited pre-ignition knock during diagnostics.
+    Resolution: Replaced upper and lower radiator hoses. Replaced
+                thermostat and housing. Flushed cooling system. Added
+                new coolant (50/50 mix). Engine monitored for 2 hours
+                post-repair. Temperature stabilized at 82 degC.
+    Parts Used: 2x radiator hoses, 1x thermostat, 1x housing gasket, 10L coolant
+    Cost: Rs. 18,200
+    Next Service: 2026-02-28 (follow-up check)
+    Technician: Priya Deshmukh (TEC-031)
+    Note: Vehicle was operating in 42 degC ambient temperature during breakdown.
+          Heat stress on cooling components is a recurring issue in summer.
+          Recommend pre-summer cooling system inspection for all trucks.
+
+RECORD #004
+    Vehicle: Truck-12 (Tata Signa 4825.TK)
+    Date: 2026-02-01
+    Odometer: 185,600 km
+    Service Type: Unscheduled
+    Components: EGR System, Turbocharger
+    Issue: Check engine light (P0401 - EGR Flow Insufficient). Truck
+           showed 12% power loss and 15% increase in NOx emissions
+           during OBD readout. Turbocharger boost pressure 0.3 bar below spec.
+    Resolution: Cleaned EGR valve and cooler. Found carbon buildup restricting
+                flow by approximately 40%. Turbocharger wastegate actuator was
+                sticking intermittently - lubricated and tested. Cleared DTC.
+                Test drive showed normal boost pressure and EGR operation.
+    Parts Used: EGR gasket set, turbo wastegate repair kit, intake cleaner
+    Cost: Rs. 22,800
+    Next Service: 2026-03-01 (re-check EGR)
+    Technician: Ravi Shankar (TEC-042)
+    Note: At 185,000 km, this truck should be scheduled for major service
+          soon. EGR and DPF issues typically escalate together beyond 200,000 km.
+
+RECORD #005
+    Vehicle: Truck-31 (Eicher Pro 6049)
+    Date: 2026-02-05
+    Odometer: 73,450 km
+    Service Type: Unscheduled
+    Components: Tire, Wheel Alignment
+    Issue: Front-right tire showing uneven wear (inner edge worn 4mm more than
+           outer). Tire pressure was 72 PSI (spec: 100 PSI). Driver reported
+           vehicle pulling to the right. Fuel consumption elevated by ~8%
+           over last 3,000 km.
+    Resolution: Replaced front-right tire. Performed 4-wheel alignment.
+                Corrected all tire pressures to spec (100 PSI front, 90 PSI rear).
+                Fuel consumption expected to normalize within 500 km.
+    Parts Used: 1x MRF tire 295/80R22.5, alignment labor
+    Cost: Rs. 32,000
+    Next Service: 2026-05-05 or 85,000 km
+    Technician: Amit Patel (TEC-055)
+    Note: Under-inflation is a fleet-wide issue. Recommend implementing
+          weekly tire pressure checks and TPMS installation on all trucks.
+
+RECORD #006
+    Vehicle: General Fleet
+    Date: 2026-02-10
+    Service Type: Scheduled Fleet Inspection
+    Summary:
+        Total vehicles inspected: 50
+        Vehicles requiring immediate attention: 7
+        Vehicles with minor issues: 15
+        Vehicles in good condition: 28
+
+    Critical findings:
+    - Truck-08: Fuel consumption still 20% above baseline post injector repair
+    - Truck-33: SCR warning light (AdBlue level low)
+    - Truck-36: Brake pad wear at 85% on rear axle
+    - Truck-41: Steering play exceeds 25mm (limit: 20mm)
+    - Truck-44: Air filter clogged (30% flow restriction)
+    - Truck-48: Battery voltage dropping under cold start
+    - Truck-50: Exhaust leak at turbo-manifold gasket
+
+    Fleet-wide observations:
+    - Average tire pressure compliance: 72% (target: 95%)
+    - Average fuel efficiency: 3.8 km/L (target: 4.2 km/L)
+    - DPF health score (fleet average): 78/100
+    - OBD fault codes present: 12 vehicles (24%)
+
+
+PREDICTIVE MAINTENANCE TRIGGERS
+--------------------------------------------------------------------------------
+
+Based on accumulated telemetry data, the following patterns indicate
+upcoming maintenance needs:
+
+1. FUEL SYSTEM ALERT
+   Trigger: fuel_rate > baseline * 1.2 for 3+ consecutive hours
+   Likely cause: Injector degradation, fuel filter clog, air leak
+   Action: Schedule diagnostic within 48 hours
+   Historical accuracy: 85%
+
+2. BRAKE SYSTEM ALERT
+   Trigger: Speed variance consistently high + stopping distance increase
+   Likely cause: Brake pad wear, fluid degradation, caliper sticking
+   Action: Immediate inspection
+   Historical accuracy: 78%
+
+3. COOLING SYSTEM ALERT
+   Trigger: Operating temp trend increasing > 2 degC/month
+   Likely cause: Coolant degradation, thermostat failure, fan clutch
+   Action: Cooling system service
+   Historical accuracy: 72%
+
+4. ENGINE DEGRADATION
+   Trigger: Power loss + fuel increase + erratic idle
+   Likely cause: EGR carbon buildup, DPF saturation, turbo wear
+   Action: Major engine service
+   Historical accuracy: 80%
+
+5. TIRE MAINTENANCE
+   Trigger: Fuel consumption increase 5-8% + GPS track variation
+   Likely cause: Under-inflation, misalignment, uneven wear
+   Action: Tire and alignment service
+   Historical accuracy: 90%
+
+
+MAINTENANCE COST ANALYSIS (2025-2026)
+--------------------------------------------------------------------------------
+
+| Category              | Annual Cost (Fleet) | Per Vehicle Avg | % of Total |
+|-----------------------|---------------------|-----------------|------------|
+| Engine Repairs        | Rs. 24,50,000       | Rs. 49,000      | 28%        |
+| Tire Replacement      | Rs. 18,00,000       | Rs. 36,000      | 21%        |
+| Brake System          | Rs. 8,50,000        | Rs. 17,000      | 10%        |
+| Cooling System        | Rs. 5,75,000        | Rs. 11,500      | 7%         |
+| Electrical/ECU        | Rs. 6,20,000        | Rs. 12,400      | 7%         |
+| Preventive Service    | Rs. 12,00,000       | Rs. 24,000      | 14%        |
+| Emergency Breakdown   | Rs. 11,25,000       | Rs. 22,500      | 13%        |
+| TOTAL                 | Rs. 86,20,000       | Rs. 1,72,400    | 100%       |
+
+Key insight: Emergency breakdowns cost 2x preventive service. Every Rs. 1
+invested in preventive maintenance saves Rs. 2.3 in emergency repairs.
+
+================================================================================
+              END OF FLEET MAINTENANCE LOG DATABASE
+================================================================================
