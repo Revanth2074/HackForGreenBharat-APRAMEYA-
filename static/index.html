@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenRoute AI - Fleet Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1c;
+            --bg-secondary: #111827;
+            --bg-card: #1a2235;
+            --bg-card-hover: #1e2a3f;
+            --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.15);
+            --accent-dim: #065f46;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-dim: #64748b;
+            --border: #1e293b;
+            --border-accent: rgba(16, 185, 129, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* ── Header ─────────────────────────────────────── */
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .logo {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent), #34d399);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 700;
+        }
+        .header h1 {
+            font-size: 18px; font-weight: 600;
+            background: linear-gradient(90deg, var(--accent), #34d399);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header-stats {
+            display: flex; gap: 20px; font-size: 13px; color: var(--text-secondary);
+        }
+        .stat-value { color: var(--accent); font-weight: 600; }
+
+        /* ── Layout ─────────────────────────────────────── */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            height: calc(100vh - 57px);
+        }
+
+        /* ── Left Panel (Dashboard) ─────────────────────────── */
+        .dashboard {
+            overflow-y: auto;
+            padding: 16px;
+        }
+        .dashboard::-webkit-scrollbar { width: 6px; }
+        .dashboard::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+        /* Tab bar */
+        .tab-bar {
+            display: flex; gap: 4px; margin-bottom: 16px;
+            background: var(--bg-secondary); border-radius: 10px; padding: 4px;
+        }
+        .tab {
+            padding: 8px 16px; border-radius: 8px; cursor: pointer;
+            font-size: 13px; font-weight: 500; color: var(--text-secondary);
+            transition: all 0.2s; border: none; background: none;
+        }
+        .tab:hover { color: var(--text-primary); }
+        .tab.active {
+            background: var(--accent); color: white;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Summary cards row */
+        .summary-row {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 12px; margin-bottom: 16px;
+        }
+        .summary-card {
+            background: var(--bg-card); border-radius: 12px; padding: 14px;
+            border: 1px solid var(--border); transition: all 0.2s;
+        }
+        .summary-card:hover { border-color: var(--border-accent); }
+        .summary-card .label {
+            font-size: 11px; color: var(--text-dim); text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 6px;
+        }
+        .summary-card .value {
+            font-size: 22px; font-weight: 700;
+        }
+        .summary-card .sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+        .value.green { color: var(--accent); }
+        .value.red { color: var(--danger); }
+        .value.yellow { color: var(--warning); }
+        .value.blue { color: var(--info); }
+
+        /* Fleet table */
+        .fleet-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 12px;
+        }
+        .fleet-table th {
+            background: var(--bg-secondary);
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 10px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+        }
+        .fleet-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            transition: background 0.2s;
+        }
+        .fleet-table tr:hover td { background: var(--bg-card); }
+        .fleet-table .truck-id {
+            font-weight: 600; color: var(--text-primary);
+        }
+
+        /* State badges */
+        .badge {
+            display: inline-block; padding: 3px 8px; border-radius: 6px;
+            font-size: 10px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .badge-en-route { background: rgba(16, 185, 129, 0.15); color: var(--accent); }
+        .badge-idle { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .badge-delayed { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+        .badge-emission { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+        .badge-optimize { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+
+        /* Alerts panel */
+        .alert-item {
+            background: var(--bg-card); border-radius: 10px; padding: 14px;
+            margin-bottom: 8px; border-left: 3px solid var(--danger);
+            transition: all 0.2s;
+        }
+        .alert-item:hover { background: var(--bg-card-hover); }
+        .alert-item.warning { border-left-color: var(--warning); }
+        .alert-item.info { border-left-color: var(--info); }
+        .alert-header {
+            display: flex; justify-content: space-between; margin-bottom: 6px;
+        }
+        .alert-truck { font-weight: 600; font-size: 13px; }
+        .alert-reason { font-size: 12px; color: var(--text-secondary); }
+        .alert-recs { font-size: 11px; color: var(--text-dim); margin-top: 8px; }
+        .alert-recs li { margin-bottom: 4px; }
+
+        /* Ranking bars */
+        .rank-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 14px; background: var(--bg-card); border-radius: 10px;
+            margin-bottom: 6px; transition: all 0.2s;
+        }
+        .rank-item:hover { background: var(--bg-card-hover); }
+        .rank-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--bg-secondary); display: flex;
+            align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700; flex-shrink: 0;
+        }
+        .rank-num.top { background: var(--accent); color: white; }
+        .rank-num.bottom { background: var(--danger); color: white; }
+        .rank-bar-wrap { flex: 1; }
+        .rank-name { font-size: 12px; font-weight: 500; margin-bottom: 4px; }
+        .rank-bar {
+            height: 6px; background: var(--bg-secondary); border-radius: 3px;
+            overflow: hidden;
+        }
+        .rank-bar-fill {
+            height: 100%; border-radius: 3px; transition: width 0.5s ease;
+        }
+        .rank-score { font-size: 14px; font-weight: 700; width: 50px; text-align: right; }
+
+        /* ── Right Panel (Chat) ─────────────────────────── */
+        .chat-panel {
+            border-left: 1px solid var(--border);
+            display: flex; flex-direction: column;
+            background: var(--bg-secondary);
+        }
+        .chat-header {
+            padding: 14px 16px; border-bottom: 1px solid var(--border);
+            font-size: 14px; font-weight: 600;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .chat-header .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--accent); animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .chat-messages {
+            flex: 1; overflow-y: auto; padding: 16px;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .chat-messages::-webkit-scrollbar { width: 4px; }
+        .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        .msg {
+            max-width: 92%; padding: 12px 14px; border-radius: 14px;
+            font-size: 13px; line-height: 1.5; animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .msg.user {
+            align-self: flex-end;
+            background: var(--accent); color: white;
+            border-bottom-right-radius: 4px;
+        }
+        .msg.ai {
+            align-self: flex-start;
+            background: var(--bg-card); color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--border);
+        }
+        .msg.ai .sources {
+            margin-top: 10px; padding-top: 8px;
+            border-top: 1px solid var(--border);
+            font-size: 11px; color: var(--text-dim);
+        }
+        .msg.ai .sources span {
+            display: inline-block; background: var(--accent-dim);
+            padding: 2px 6px; border-radius: 4px; margin: 2px;
+            font-size: 10px; color: var(--accent);
+        }
+        .msg.system {
+            align-self: center;
+            background: none; color: var(--text-dim);
+            font-size: 11px; text-align: center;
+        }
+        .msg.loading::after {
+            content: ''; display: inline-block;
+            width: 12px; height: 12px;
+            border: 2px solid var(--text-dim);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s infinite linear;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .quick-actions {
+            padding: 8px 16px;
+            display: flex; flex-wrap: wrap; gap: 6px;
+        }
+        .quick-btn {
+            padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text-secondary);
+            font-size: 11px; cursor: pointer; transition: all 0.2s;
+            font-family: inherit;
+        }
+        .quick-btn:hover {
+            border-color: var(--accent); color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .chat-input-wrap {
+            padding: 12px 16px; border-top: 1px solid var(--border);
+            display: flex; gap: 8px;
+        }
+        .chat-input {
+            flex: 1; padding: 10px 14px; border-radius: 10px;
+            border: 1px solid var(--border); background: var(--bg-card);
+            color: var(--text-primary); font-size: 13px;
+            font-family: inherit; outline: none; transition: border 0.2s;
+        }
+        .chat-input:focus { border-color: var(--accent); }
+        .chat-input::placeholder { color: var(--text-dim); }
+
+        .send-btn {
+            padding: 10px 18px; border-radius: 10px; border: none;
+            background: var(--accent); color: white; font-weight: 600;
+            font-size: 13px; cursor: pointer; font-family: inherit;
+            transition: all 0.2s;
+        }
+        .send-btn:hover { background: #059669; transform: scale(1.02); }
+        .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .layout { grid-template-columns: 1fr; }
+            .chat-panel { height: 50vh; border-left: none; border-top: 1px solid var(--border); }
+            .summary-row { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">G</div>
+            <h1>GreenRoute AI</h1>
+        </div>
+        <div class="header-stats">
+            <div>Trucks: <span class="stat-value" id="stat-trucks">--</span></div>
+            <div>Events: <span class="stat-value" id="stat-events">--</span></div>
+            <div>Alerts: <span class="stat-value" id="stat-alerts" style="color:var(--danger)">--</span></div>
+            <div id="live-dot" style="display:flex;align-items:center;gap:4px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.5s infinite;"></span>
+                LIVE
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="layout">
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Tabs -->
+            <div class="tab-bar">
+                <button class="tab active" onclick="switchTab('fleet')">Fleet Status</button>
+                <button class="tab" onclick="switchTab('alerts')">Alerts</button>
+                <button class="tab" onclick="switchTab('ranking')">Eco Ranking</button>
+            </div>
+
+            <!-- Summary cards -->
+            <div class="summary-row">
+                <div class="summary-card">
+                    <div class="label">En Route</div>
+                    <div class="value green" id="sum-enroute">--</div>
+                    <div class="sub">Active trucks</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Alerts</div>
+                    <div class="value red" id="sum-alerts">--</div>
+                    <div class="sub">Active violations</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Fleet CO2</div>
+                    <div class="value yellow" id="sum-co2">--</div>
+                    <div class="sub">kg (current window)</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Avg Eco Score</div>
+                    <div class="value blue" id="sum-eco">--</div>
+                    <div class="sub">Fleet average</div>
+                </div>
+            </div>
+
+            <!-- Fleet Tab -->
+            <div id="tab-fleet" class="tab-content active">
+                <table class="fleet-table">
+                    <thead>
+                        <tr>
+                            <th>Truck</th>
+                            <th>Route</th>
+                            <th>Speed</th>
+                            <th>Fuel</th>
+                            <th>CO2 (kg)</th>
+                            <th>ETA</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fleet-body"></tbody>
+                </table>
+            </div>
+
+            <!-- Alerts Tab -->
+            <div id="tab-alerts" class="tab-content">
+                <div id="alerts-list"></div>
+            </div>
+
+            <!-- Ranking Tab -->
+            <div id="tab-ranking" class="tab-content">
+                <div id="ranking-list"></div>
+            </div>
+        </div>
+
+        <!-- Chat Panel -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <div class="dot"></div>
+                GreenRoute AI Copilot
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="msg system">
+                    Ask me anything about fleet operations, emissions, and sustainability.
+                </div>
+            </div>
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="askQuick('Why is truck 8 violating emission standards?')">Why is truck 8 over limit?</button>
+                <button class="quick-btn" onclick="askQuick('Which trucks exceeded the carbon threshold?')">Carbon violations</button>
+                <button class="quick-btn" onclick="askQuick('Suggest greener alternatives for the worst emitters')">Greener alternatives</button>
+                <button class="quick-btn" onclick="askQuick('What is the fleet carbon footprint right now?')">Fleet CO2 footprint</button>
+                <button class="quick-btn" onclick="askQuick('Which truck is most delayed and why?')">Delayed trucks</button>
+                <button class="quick-btn" onclick="askQuick('Show eco-driving tips for our fleet')">Eco-driving tips</button>
+            </div>
+            <div class="chat-input-wrap">
+                <input class="chat-input" id="chat-input" placeholder="Ask about fleet, emissions, policies..." 
+                       onkeydown="if(event.key==='Enter')sendChat()">
+                <button class="send-btn" id="send-btn" onclick="sendChat()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API = '';
+        let refreshInterval;
+
+        // ── Tab switching ────────────────────────────────────
+        function switchTab(name) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`tab-${name}`).classList.add('active');
+        }
+
+        // ── State badge helper ───────────────────────────────
+        function stateBadge(state) {
+            const map = {
+                'EN_ROUTE': 'badge-en-route',
+                'IDLE': 'badge-idle',
+                'DELAYED': 'badge-delayed',
+                'EMISSION_ALERT': 'badge-emission',
+                'OPTIMIZATION_REQUIRED': 'badge-optimize',
+            };
+            return `<span class="badge ${map[state] || ''}">${state.replace('_', ' ')}</span>`;
+        }
+
+        // ── Load fleet status ───────────────────────────────
+        async function loadFleet() {
+            try {
+                const res = await fetch(`${API}/fleet_status`);
+                const data = await res.json();
+                
+                document.getElementById('stat-trucks').textContent = data.total_trucks;
+                document.getElementById('stat-events').textContent = data.event_count.toLocaleString();
+
+                let totalCO2 = 0;
+                let enroute = 0, alertCount = 0;
+                let html = '';
+
+                for (const t of data.fleet) {
+                    const co2 = t.window_metrics.carbon_emission || 0;
+                    totalCO2 += co2;
+                    if (t.state === 'EN_ROUTE') enroute++;
+                    else alertCount++;
+
+                    const eta = t.window_metrics?.eta_minutes || t.current?.eta_minutes || '--';
+                    const etaDisplay = eta > 9000 ? 'N/A' : `${Math.round(eta)}m`;
+
+                    html += `<tr>
+                        <td class="truck-id">T-${String(t.truck_id).padStart(2,'0')}</td>
+                        <td>${t.current.route_id || ''}</td>
+                        <td>${t.current.speed?.toFixed(1) || '--'} km/h</td>
+                        <td>${t.current.fuel_rate?.toFixed(1) || '--'} L/h</td>
+                        <td style="color:${co2 > 15 ? 'var(--danger)' : co2 > 10 ? 'var(--warning)' : 'var(--text-secondary)'}">${co2.toFixed(2)}</td>
+                        <td>${etaDisplay}</td>
+                        <td>${stateBadge(t.state)}</td>
+                    </tr>`;
+                }
+
+                document.getElementById('fleet-body').innerHTML = html;
+                document.getElementById('sum-enroute').textContent = enroute;
+                document.getElementById('sum-alerts').textContent = alertCount;
+                document.getElementById('stat-alerts').textContent = alertCount;
+                document.getElementById('sum-co2').textContent = totalCO2.toFixed(1);
+            } catch(e) {
+                console.error('Fleet load error:', e);
+            }
+        }
+
+        // ── Load alerts ─────────────────────────────────────
+        async function loadAlerts() {
+            try {
+                const res = await fetch(`${API}/alerts`);
+                const data = await res.json();
+                
+                let html = '';
+                if (data.active_alerts.length === 0) {
+                    html = '<div style="text-align:center;padding:40px;color:var(--text-dim)">No active alerts</div>';
+                }
+                for (const a of data.active_alerts) {
+                    const cls = a.new_state === 'EMISSION_ALERT' ? '' : 
+                               a.new_state === 'DELAYED' ? 'warning' : 'info';
+                    let recsHtml = '';
+                    if (a.recommendations) {
+                        recsHtml = '<ul class="alert-recs">' + 
+                            a.recommendations.map(r => `<li>${r}</li>`).join('') + '</ul>';
+                    }
+                    html += `<div class="alert-item ${cls}">
+                        <div class="alert-header">
+                            <span class="alert-truck">Truck ${a.truck_id} ${stateBadge(a.new_state)}</span>
+                        </div>
+                        <div class="alert-reason">${a.reason || ''}</div>
+                        ${recsHtml}
+                    </div>`;
+                }
+                document.getElementById('alerts-list').innerHTML = html;
+            } catch(e) {
+                console.error('Alerts load error:', e);
+            }
+        }
+
+        // ── Load ranking ────────────────────────────────────
+        async function loadRanking() {
+            try {
+                const res = await fetch(`${API}/ranking`);
+                const data = await res.json();
+                
+                let html = '';
+                let totalScore = 0;
+                const maxScore = Math.max(...data.rankings.map(r => r.eco_score), 1);
+
+                for (const r of data.rankings) {
+                    totalScore += r.eco_score;
+                    const pct = Math.max(0, (r.eco_score / maxScore) * 100);
+                    const isTop = r.rank <= 3;
+                    const isBottom = r.rank > data.rankings.length - 3;
+                    const color = r.eco_score > 5 ? 'var(--accent)' : 
+                                  r.eco_score > 2 ? 'var(--warning)' : 'var(--danger)';
+                    
+                    html += `<div class="rank-item">
+                        <div class="rank-num ${isTop ? 'top' : isBottom ? 'bottom' : ''}">${r.rank}</div>
+                        <div class="rank-bar-wrap">
+                            <div class="rank-name">Truck ${r.truck_id} <span style="color:var(--text-dim);font-size:11px">${r.route_id} | ${r.rating}</span></div>
+                            <div class="rank-bar"><div class="rank-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+                        </div>
+                        <div class="rank-score" style="color:${color}">${r.eco_score.toFixed(1)}</div>
+                    </div>`;
+                }
+
+                document.getElementById('ranking-list').innerHTML = html;
+                const avgScore = data.rankings.length ? (totalScore / data.rankings.length).toFixed(1) : '--';
+                document.getElementById('sum-eco').textContent = avgScore;
+            } catch(e) {
+                console.error('Ranking load error:', e);
+            }
+        }
+
+        // ── Chat ────────────────────────────────────────────
+        function addMsg(text, type, sources) {
+            const container = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `msg ${type}`;
+            
+            let content = text.replace(/\n/g, '<br>');
+            // basic markdown bold
+            content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            
+            if (sources && sources.length > 0) {
+                content += '<div class="sources">Sources: ';
+                sources.forEach(s => {
+                    content += `<span>${s.document}</span> `;
+                });
+                content += '</div>';
+            }
+            
+            div.innerHTML = content;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            return div;
+        }
+
+        function askQuick(question) {
+            document.getElementById('chat-input').value = question;
+            sendChat();
+        }
+
+        async function sendChat() {
+            const input = document.getElementById('chat-input');
+            const question = input.value.trim();
+            if (!question) return;
+            
+            input.value = '';
+            addMsg(question, 'user');
+            
+            const loadingMsg = addMsg('Analyzing fleet data and retrieving policies...', 'ai loading');
+            document.getElementById('send-btn').disabled = true;
+
+            try {
+                const res = await fetch(`${API}/ask`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({question}),
+                });
+                const data = await res.json();
+                loadingMsg.remove();
+                addMsg(data.answer || 'No response received.', 'ai', data.sources);
+            } catch(e) {
+                loadingMsg.remove();
+                addMsg('Error connecting to the server. Please try again.', 'ai');
+            }
+
+            document.getElementById('send-btn').disabled = false;
+        }
+
+        // ── Auto-refresh ────────────────────────────────────
+        function startRefresh() {
+            loadFleet();
+            loadAlerts();
+            loadRanking();
+            refreshInterval = setInterval(() => {
+                loadFleet();
+                loadAlerts();
+                loadRanking();
+            }, 3000);
+        }
+
+        startRefresh();
+    </script>
+</body>
+</html>
